@@ -1,0 +1,1 @@
+curl http://squizlabs.github.io/HTML_CodeSniffer/build/HTMLCS.js -o lib/vendor/htmlcs.js
