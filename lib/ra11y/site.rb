@@ -8,9 +8,13 @@ module Ra11y
     end
 
     def run
+      puts "Site: #{path}"
+      puts "Running Ra11y on #{paths.count} files..."
+      puts "Errors: #{errors.count}, Warnings: #{warnings.count}, Notices: #{notices.count}"
+
       html_files.each do |file|
 
-        puts "#{file.path} (Errors: #{errors.count}, Warnings: #{warnings.count}, Notices: #{notices.count}):".blue
+        puts "#{file.path} (Errors: #{file.errors.count}, Warnings: #{file.warnings.count}, Notices: #{file.notices.count}):".blue
 
         file.results.each do |result|
           output = "#{result.type.capitalize}: #{result}"
@@ -26,6 +30,8 @@ module Ra11y
           puts "  * #{output}"
         end
       end
+
+      exit 1 unless site.perfect?
     end
 
     def paths
@@ -34,7 +40,7 @@ module Ra11y
     end
 
     def html_files
-      @files ||= paths.map { |p| Ra11y::HtmlFile.new(p) }
+      @files ||= Parallel.map(paths) { |p| Ra11y::HtmlFile.new(p) }
     end
 
     def perfect?

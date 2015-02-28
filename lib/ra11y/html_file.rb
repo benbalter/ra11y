@@ -35,6 +35,8 @@ module Ra11y
 
     def test
       @test ||= JSON.parse(Ra11y.run_command("file://#{path}"))
+    rescue
+      { "results" => [] }
     end
 
     def results_by_type(type)

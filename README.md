@@ -1,6 +1,6 @@
 # Ra11y
 
-TODO: Write a gem description
+Ruby-based accessibility testing for Jekyll and other static sites
 
 ## Installation
 
@@ -12,13 +12,20 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+## Usage with Jekyll
 
-    $ gem install ra11y
+Add the following to a `Rakefile`:
 
-## Usage
+```ruby
+require 'ra11y'
 
-TODO: Write usage instructions here
+task :test do
+  sh "bundle exec jekyll build"
+  Ra11y::Site.new("./_site").run
+end
+```
+
+Then run `bundle exec rake test`
 
 ## Contributing
 

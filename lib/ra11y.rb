@@ -6,6 +6,7 @@ require "open3"
 require 'json'
 require 'logger'
 require 'colorator'
+require 'parallel'
 
 module Ra11y
 
