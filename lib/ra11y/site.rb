@@ -31,7 +31,7 @@ module Ra11y
         end
       end
 
-      exit 1 unless site.perfect?
+      exit 1 unless perfect?
     end
 
     def paths
