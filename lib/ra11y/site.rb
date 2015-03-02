@@ -3,7 +3,7 @@ module Ra11y
 
     attr_accessor :path
 
-    def initialize(path)
+    def initialize(path, options: nil)
       @path = File.expand_path(path, Dir.pwd)
     end
 

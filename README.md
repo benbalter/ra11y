@@ -4,6 +4,7 @@
 
 Ruby-based automated accessibility testing for Jekyll and other static sites
 
+
 ## Requirements
 
 Ra11y requires Pa11y or a similar command-line accessibility testing tool. To install Pa11y:
@@ -34,6 +35,36 @@ end
 ```
 
 Then run `bundle exec rake test`
+
+### Build failure criteria
+
+By default, `ra11y` will cause a build to fail if any errors or warnings are generated. For some users, this might be too strict. `pa11y` allows you to customize the failure criteria with a `Hash`:
+
+```ruby
+options = {
+  failure: {
+    warnings: 10,
+    errors: 10
+  }
+}
+Ra11y::Site.new("./_site", options: options).run
+```
+
+You can also tell `ra11y` only to provide information, but not to affect the build status one way or the other:
+
+```ruby
+options = {
+  inform_only: true
+}
+Ra11y::Site.new("./_site", options: options).run
+```
+
+## Usage with Travis-CI
+
+Ensure you have this line in your `.travis.yml` file:
+```yaml
+before_script: npm install -g pa11y
+```
 
 ## Contributing
 
