@@ -27,4 +27,16 @@ describe "Ra11y" do
     Ra11y.options = { :executable => "foo" }
     expect(Ra11y.options[:executable]).to eql("foo")
   end
+  
+  it "has a default failure Proc that exits with 0" do
+    failure_proc = Ra11y.options[:failure]
+    warnings = []
+    errors = []
+    
+    begin
+      failure_proc.call(warnings, errors)
+    rescue SystemExit => e
+      expect(e.status).to eql(0)
+    end
+  end
 end
