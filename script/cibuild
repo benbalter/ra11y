@@ -1,1 +1,2 @@
-bundle exec rake test
+bundle exec rake spec
+bundle exec gem build ra11y.gemspec
