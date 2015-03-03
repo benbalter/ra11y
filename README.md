@@ -1,5 +1,7 @@
 # Ra11y
 
+[![Build Status](https://travis-ci.org/benbalter/ra11y.svg)](https://travis-ci.org/benbalter/ra11y)
+
 Ruby-based accessibility testing for Jekyll and other static sites
 
 ## Requirements

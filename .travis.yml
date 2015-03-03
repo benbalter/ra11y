@@ -1,0 +1,4 @@
+language: ruby
+before_script: npm install -g pa11y
+sudo: false
+cache: bundler

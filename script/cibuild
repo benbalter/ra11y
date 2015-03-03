@@ -1,1 +1,6 @@
-bundle exec rake test
+#!/bin/sh
+
+set -e
+
+bundle exec rake spec
+bundle exec gem build ra11y.gemspec
