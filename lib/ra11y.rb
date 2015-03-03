@@ -13,7 +13,8 @@ module Ra11y
   DEFAULTS = {
     :executable => "pa11y",
     :reporter   => "json",
-    :htmlcs     => "file://#{File.expand_path("vendor/htmlcs.js", File.dirname(__FILE__))}"
+    :htmlcs     => "file://#{File.expand_path("vendor/htmlcs.js", File.dirname(__FILE__))}",
+    :failure    => Proc.new {|warnings, errors| exit 0}
   }
 
   def self.options=(hash)
