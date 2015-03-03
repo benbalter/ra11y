@@ -8,7 +8,7 @@ Ruby-based accessibility testing for Jekyll and other static sites
 
 Ra11y requires Pa11y or a similar command-line accessibility testing tool. To install Pa11y:
 
-`npm install pa11y`
+`npm install -g pa11y`
 
 ## Installation
 
