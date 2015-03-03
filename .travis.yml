@@ -1,4 +1,5 @@
 language: ruby
 before_script: npm install -g pa11y
+script: "script/cibuild"
 sudo: false
 cache: bundler
