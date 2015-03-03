@@ -3,7 +3,7 @@ module Ra11y
 
     attr_accessor :path
 
-    def initialize(path, options: nil)
+    def initialize(path)
       @path = File.expand_path(path, Dir.pwd)
     end
 
@@ -31,7 +31,16 @@ module Ra11y
         end
       end
 
-      exit 1 unless perfect?
+      # spaghetti
+      # if @options[:failure]
+      #   if @options[:failure].is_a?(Proc)
+      #     options[:failure].call(@warnings, @errors) ? exit 1 : exit 0
+      #   else
+      #     exit 1
+      #   end
+      # else
+      #   exit 1
+      # end
     end
 
     def paths

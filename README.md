@@ -38,30 +38,22 @@ Then run `bundle exec rake test`
 
 ### Build failure criteria
 
-By default, `ra11y` will cause a build to fail if any errors or warnings are generated. For some users, this might be too strict. `pa11y` allows you to customize the failure criteria with a `Hash`:
+By default, ra11y will just print information to STDOUT. However, you can configure it to `exit 1` which will "break" the build. Pass a `Proc` that returns `true` for failure into `Ra11y::Site#new`:
 
 ```ruby
 options = {
-  failure: {
-    warnings: 10,
-    errors: 10
-  }
+  failure: Proc.new do |warnings, errors|
+    warnings.length > 20 || errors.length > 10
+  end
 }
-Ra11y::Site.new("./_site", options: options).run
+Ra11y::Site.new("./_site", options).run
 ```
 
-You can also tell `ra11y` only to provide information, but not to affect the build status one way or the other:
-
-```ruby
-options = {
-  inform_only: true
-}
-Ra11y::Site.new("./_site", options: options).run
-```
+This means that if the `ra11y` finds more than 20 warnings _or_ more than 10 errors, the build will fail. Of course, you can customize this `Proc` however you want.
 
 ## Usage with Travis-CI
 
-Ensure you have this line in your `.travis.yml` file:
+If you're using pa11y, ensure you have this line in your `.travis.yml` file:
 ```yaml
 before_script: npm install -g pa11y
 ```
