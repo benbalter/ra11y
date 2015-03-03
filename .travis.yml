@@ -1,4 +1,8 @@
 language: ruby
+rvm:
+  - 1.9.3
+  - 2.1.5
+  - 2.2.0
 before_script: npm install -g pa11y
 script: "script/cibuild"
 sudo: false
