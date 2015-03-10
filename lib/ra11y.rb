@@ -1,5 +1,6 @@
 require "ra11y/version"
 require "ra11y/site"
+require "ra11y/page"
 require "ra11y/html_file"
 require "ra11y/result"
 require "open3"
