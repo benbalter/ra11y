@@ -13,7 +13,7 @@ module Ra11y
 
       Parallel.each(html_files) do |file|
 
-        puts "#{file.path} (Errors: #{file.errors.count}, Warnings: #{file.warnings.count}, Notices: #{file.notices.count}):".blue
+        puts "#{file.path} (Errors: #{file.errors.count}, Warnings: #{file.warnings.count}, Notices: #{file.notices.count}):".blue if file.results.any? { |r| r.display? }
 
         file.results.each do |result|
           next unless result.display?
