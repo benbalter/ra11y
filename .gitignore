@@ -20,5 +20,4 @@ tmp
 *.o
 *.a
 mkmf.log
-package.json
 node_modules

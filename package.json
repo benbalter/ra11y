@@ -1,0 +1,23 @@
+{
+  "name": "ra11y",
+  "version": "0.0.1",
+  "description": "TODO: Write a gem description",
+  "main": "index.js",
+  "scripts": {
+    "test": "script/cibuild"
+  },
+  "author": "Ben Balter",
+  "license": "MIT",
+  "dependencies": {
+    "pa11y": "^1.6.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benbalter/ra11y.git"
+  },
+  "bugs": {
+    "url": "https://github.com/benbalter/ra11y/issues"
+  },
+  "homepage": "https://github.com/benbalter/ra11y#readme"
+}

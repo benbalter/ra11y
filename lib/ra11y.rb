@@ -7,6 +7,7 @@ require 'json'
 require 'logger'
 require 'colorator'
 require 'parallel'
+require 'cliver'
 
 module Ra11y
 
@@ -29,6 +30,7 @@ module Ra11y
   end
 
   def self.run_command(*args)
+    Cliver.assert('pa11y')
     output, status = Open3.capture2e(options[:executable], *flags, *args)
     output
   end
