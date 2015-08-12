@@ -25,7 +25,7 @@ module Ra11y
     attr_writer :options
 
     def options
-      DEFAULTS.merge(@options || {}).merge({ :port => (PORT + Thread.list.count).to_s })
+      DEFAULTS.merge(@options || {}).merge({ :port => (PORT + Process.pid).to_s })
     end
 
     def flags
@@ -34,6 +34,7 @@ module Ra11y
 
     def run_command(*args)
       Cliver.assert('pa11y', "~> 2.0")
+      logger.info "Running command #{[options[:executable], *flags, *args].join(" ")}" if debug?
       output, status = Open3.capture2e(options[:executable], *flags, *args)
       raise Pa11yError, output if status.exitstatus == 1
       output
@@ -41,6 +42,14 @@ module Ra11y
 
     def executable_version
       run_command("--version").strip
+    end
+
+    def logger
+      @logger ||= Logger.new(STDOUT)
+    end
+
+    def debug?
+      !ENV["DEBUG"].to_s.empty?
     end
   end
 end
