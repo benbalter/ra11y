@@ -10,6 +10,7 @@ require 'parallel'
 require 'cliver'
 
 module Ra11y
+  class Pa11yError < StandardError; end
 
   DEFAULTS = {
     :executable => "pa11y",
@@ -32,6 +33,7 @@ module Ra11y
   def self.run_command(*args)
     Cliver.assert('pa11y', "~> 2.0")
     output, status = Open3.capture2e(options[:executable], *flags, *args)
+    raise Pa11yError, output if status.exitstatus == 1
     output
   end
 

@@ -34,9 +34,12 @@ module Ra11y
     private
 
     def test
-      @test ||= JSON.parse(Ra11y.run_command("file://#{path}"))
-    rescue
-      { "results" => [] }
+      @test ||= begin
+        output = Ra11y.run_command("file://#{path}")
+        JSON.parse(output)
+      rescue JSON::ParserError
+        raise Pa11yError, output
+      end
     end
 
     def results_by_type(type)

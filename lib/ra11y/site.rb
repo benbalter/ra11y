@@ -12,7 +12,7 @@ module Ra11y
       puts "Running Ra11y on #{paths.count} files..."
       puts "Errors: #{errors.count}, Warnings: #{warnings.count}, Notices: #{notices.count}"
 
-      Parallel.each(html_files) do |file|
+      html_files.each do |file|
 
         puts "#{file.path} (Errors: #{file.errors.count}, Warnings: #{file.warnings.count}, Notices: #{file.notices.count}):".blue
 
@@ -66,7 +66,7 @@ module Ra11y
     private
 
     def results_by_type(type)
-      html_files.map { |file| file.send(type) }.flatten
+      Parallel.map(html_files) { |file| file.send(type) }.flatten
     end
   end
 end
