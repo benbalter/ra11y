@@ -18,26 +18,29 @@ module Ra11y
     :htmlcs     => "file://#{File.expand_path("vendor/htmlcs.js", File.dirname(__FILE__))}"
   }
 
-  def self.options=(hash)
-    @options=hash
-  end
+  PORT = 3100
 
-  def self.options
-    DEFAULTS.merge(@options || {})
-  end
+  class << self
 
-  def self.flags
-    options.reject { |k,v| k == :executable }.map { |k,v| ["--#{k}", v] }.flatten
-  end
+    attr_writer :options
 
-  def self.run_command(*args)
-    Cliver.assert('pa11y', "~> 2.0")
-    output, status = Open3.capture2e(options[:executable], *flags, *args)
-    raise Pa11yError, output if status.exitstatus == 1
-    output
-  end
+    def options
+      DEFAULTS.merge(@options || {}).merge({ :port => (PORT + Thread.list.count).to_s })
+    end
 
-  def self.executable_version
-    run_command("--version").strip
+    def flags
+      options.reject { |k,v| k == :executable }.map { |k,v| ["--#{k}", v] }.flatten
+    end
+
+    def run_command(*args)
+      Cliver.assert('pa11y', "~> 2.0")
+      output, status = Open3.capture2e(options[:executable], *flags, *args)
+      raise Pa11yError, output if status.exitstatus == 1
+      output
+    end
+
+    def executable_version
+      run_command("--version").strip
+    end
   end
 end
