@@ -16,6 +16,7 @@ module Ra11y
         puts "#{file.path} (Errors: #{file.errors.count}, Warnings: #{file.warnings.count}, Notices: #{file.notices.count}):".blue
 
         file.results.each do |result|
+          next unless result.display?
           output = "#{result.type.capitalize}: #{result}"
 
           if result.error?
@@ -44,7 +45,14 @@ module Ra11y
     end
 
     def perfect?
-      errors.empty? && warnings.empty?
+      case Ra11y.options[:level]
+      when "error"
+        errors.empty?
+      when "warning"
+        errors.empty? && warnings.empty?
+      when "notice"
+        errors.empty? && warnings.empty? && notices.empty?
+      end
     end
 
     def errors

@@ -15,7 +15,9 @@ module Ra11y
   DEFAULTS = {
     :executable => "pa11y",
     :reporter   => "json",
-    :htmlcs     => "file://#{File.expand_path("vendor/htmlcs.js", File.dirname(__FILE__))}"
+    :level      => "error",
+    :htmlcs     => "file://#{File.expand_path("vendor/htmlcs.js", File.dirname(__FILE__))}",
+    :wait       => "100"
   }
 
   PORT = 3100

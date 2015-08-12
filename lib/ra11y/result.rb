@@ -39,6 +39,17 @@ module Ra11y
       to_hash.map { |key, value| "* #{key}: #{value}" }.join("\n")
     end
 
+    def display?
+      case Ra11y.options[:level]
+      when "error"
+        error?
+      when "warning"
+        error? || warning?
+      else
+        true
+      end
+    end
+
     def inspect
       "#<Ra11y::Result code=\"#{code}\" type=\"#{type}\">"
     end
