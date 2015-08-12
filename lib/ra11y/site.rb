@@ -41,7 +41,7 @@ module Ra11y
     end
 
     def html_files
-      @files ||= Parallel.map(paths) { |p| Ra11y::HtmlFile.new(p) }
+      @files ||= Parallel.map(paths) { |p| Ra11y::HtmlFile.new(p) }.reject { |f| f.redirect? }
     end
 
     def perfect?

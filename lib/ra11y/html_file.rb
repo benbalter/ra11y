@@ -31,7 +31,16 @@ module Ra11y
       "#<Ra11y::HtmlFile path=\"#{path.gsub(Dir.pwd, "")}\" errors=#{errors.count} warnings=#{warnings.count} notices=#{notices.count}>"
     end
 
+    # Is this file a jekyll-redirect-from style redirect?
+    def redirect?
+      contents =~ /<title>Redirecting\.\.\.<\/title>/
+    end
+
     private
+
+    def contents
+      @content ||= File.open(path).read
+    end
 
     def test
       @test ||= begin
