@@ -12,7 +12,7 @@ module Ra11y
       puts "Running Ra11y on #{paths.count} files..."
       puts "Errors: #{errors.count}, Warnings: #{warnings.count}, Notices: #{notices.count}"
 
-      html_files.each do |file|
+      Parallel.each(html_files) do |file|
 
         puts "#{file.path} (Errors: #{file.errors.count}, Warnings: #{file.warnings.count}, Notices: #{file.notices.count}):".blue
 
