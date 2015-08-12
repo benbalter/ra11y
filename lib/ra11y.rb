@@ -30,7 +30,7 @@ module Ra11y
   end
 
   def self.run_command(*args)
-    Cliver.assert('pa11y')
+    Cliver.assert('pa11y', "~> 2.0")
     output, status = Open3.capture2e(options[:executable], *flags, *args)
     output
   end
