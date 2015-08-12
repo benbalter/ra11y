@@ -9,7 +9,7 @@
   "author": "Ben Balter",
   "license": "MIT",
   "dependencies": {
-    "pa11y": "^1.6.3"
+    "pa11y": "^2.4.0"
   },
   "devDependencies": {},
   "repository": {

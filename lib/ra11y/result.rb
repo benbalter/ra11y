@@ -1,13 +1,15 @@
 module Ra11y
   class Result
 
-    attr_accessor :code, :message, :type
-    alias_method :to_s, :message
+    attr_accessor :code, :message, :type, :context, :selector, :type_code
 
     def initialize(hash)
-      @code    = hash["code"]
-      @message = hash["message"]
-      @type    = hash["type"]
+      @code      = hash["code"]
+      @message   = hash["message"]
+      @type      = hash["type"]
+      @context   = hash["context"]
+      @selector  = hash["selector"]
+      @type_code = hash["typeCode"].to_i
     end
 
     def error?
@@ -20,6 +22,21 @@ module Ra11y
 
     def warning?
       type == "warning"
+    end
+
+    def to_hash
+      {
+        code: code,
+        message: message,
+        type: type,
+        context: context,
+        selector: selector,
+        type_code: type_code
+      }
+    end
+
+    def to_s
+      to_hash.map { |key, value| "* #{key}: #{value}" }.join("\n")
     end
 
     def inspect

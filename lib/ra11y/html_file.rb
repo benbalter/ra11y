@@ -12,7 +12,7 @@ module Ra11y
     end
 
     def results
-      @results ||= test["results"].map { |hash| Result.new(hash) }
+      @results ||= test.map { |hash| Result.new(hash) }
     end
 
     def errors
