@@ -35,6 +35,19 @@ end
 
 Then run `bundle exec rake test`
 
+## Testing a string of HTML
+
+If you want to integrate ra11y into your test suite, it might be simplest to test a string of HTML rather than a directory of static HTML files:
+
+```ruby
+# assumes rspec/capybara
+it 'has zero automated ra11y errors' do
+  errors, warnings, notices = Ra11y::Page.new('home_page', page.html).run
+
+  expect(errors.length).to eq(0)
+end
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/ra11y/fork )
